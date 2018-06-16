@@ -1,0 +1,39 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::group(['middleware' => ['admin']], function() {
+
+
+});
+
+Route::group(['middleware' => ['web']], function () {
+    Route::any('/wechat','WechatController@index');
+    Route::any('/mini_report_home','WechatController@index');
+    Route::get('/wechat_menu','WechatController@menu');
+    Route::get('/wechat_sources','WechatController@sources');
+    Route::get('/wechat_makeImg/{head}/{name}/{url}','WechatController@makeImg');
+    Route::any('/qrcode','WechatController@qrcode');
+    Route::get('/evaluation','Home\EvaluationController@index');
+    Route::any('/evaluate','Home\EvaluationController@evaluate');
+    Route::any('/reports','Home\EvaluationController@reports');
+    Route::any('/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
+    Route::any('/report/{member_id}','Home\EvaluationController@report');
+    Route::any('/api/report/{member_id}','Home\EvaluationController@report');
+
+    Route::any('wechat_notify', 'Api\PayController@createOrderNotify');
+});
+
