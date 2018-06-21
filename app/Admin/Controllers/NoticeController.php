@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Notices;
+use App\Models\Notice;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class NoticesController extends Controller
+class NoticeController extends Controller
 {
     use ModelForm;
 
@@ -71,7 +71,7 @@ class NoticesController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Notices::class, function (Grid $grid) {
+        return Admin::grid(Notice::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->title('标题');
@@ -88,7 +88,7 @@ class NoticesController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Notices::class, function (Form $form) {
+        return Admin::form(Notice::class, function (Form $form) {
 
             $form->display('id', 'ID');
             $form->text('title','标题')->rules('required|max:10');

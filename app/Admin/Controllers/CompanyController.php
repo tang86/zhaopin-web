@@ -97,6 +97,8 @@ class CompanyController extends Controller
 
         return Admin::form(Company::class, function (Form $form) {
             $form->display('id', 'ID');
+            $form->multipleImage('profile', '图集')->move('company');
+
             $form->text('name', trans('ability.name'))->rules('required');
             $form->text('sort', trans('subject.sort'));
             $form->radio('status', trans('subject.status'))->values([])->default(1);

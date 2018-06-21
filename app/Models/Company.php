@@ -32,8 +32,8 @@ class Company extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
-		'created_at' => 'int',
-		'updated_at' => 'int',
+//		'created_at' => 'int',
+//		'updated_at' => 'int',
 		'sort' => 'int'
 	];
 
@@ -49,4 +49,16 @@ class Company extends Eloquent
 		'wechat',
 		'qq'
 	];
+
+    public function setProfileAttribute($profile)
+    {
+        if (is_array($profile)) {
+            $this->attributes['profile'] = json_encode($profile);
+        }
+    }
+
+    public function getProfileAttribute($profile)
+    {
+        return json_decode($profile, true);
+    }
 }

@@ -12,6 +12,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('news', 'NewsController');
+    $router->resource('notices', 'NoticeController');
 
     $router->post('uploadNews', 'NewsController@uploadNews');
 
