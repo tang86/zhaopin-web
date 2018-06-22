@@ -23,6 +23,9 @@ Route::group([
     $router->get('users_able/{user}', 'UserController@able');
 
     $router->resource('companies', 'CompanyController'); //企业管理
+    $router->resource('company-categories', 'CompanyCategoryController'); //行业管理
+    $router->resource('company-size', 'CompanySizeController'); //规模管理
+    $router->resource('company-status', 'CompanyStatusController'); //状态管理
 
 
 });

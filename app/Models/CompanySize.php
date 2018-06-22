@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 22 Jun 2018 13:52:42 +0800.
+ * Date: Fri, 22 Jun 2018 13:54:16 +0800.
  */
 
 namespace App\Models;
@@ -10,20 +10,22 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class CompanyCategory
+ * Class CompanySize
  * 
  * @property int $id
  * @property string $name
  * @property int $status
  * @property string $remark
+ * @property int $sort
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property int $sort
  *
  * @package App\Models
  */
-class CompanyCategory extends Eloquent
+class CompanySize extends Eloquent
 {
+	protected $table = 'company_size';
+
 	protected $casts = [
 		'status' => 'int',
 		'sort' => 'int'

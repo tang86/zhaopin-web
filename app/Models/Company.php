@@ -2,12 +2,13 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Fri, 22 Jun 2018 14:41:05 +0800.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
+
 
 /**
  * Class Company
@@ -15,16 +16,24 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property string $name
  * @property int $status
- * @property string $remark
- * @property int $created_at
- * @property int $updated_at
- * @property int $sort
  * @property string $logo
  * @property string $number
  * @property string $profile
  * @property string $phone
  * @property string $wechat
  * @property string $qq
+ * @property int $company_category_id
+ * @property int $company_status_id
+ * @property int $company_size_id
+ * @property string $imgs
+ * @property int $sort
+ * @property string $remark
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * 
+ * @property \App\Models\CompanyCategory $company_category
+ * @property \App\Models\CompanySize $company_size
+ * @property \App\Models\CompanyStatus $company_status
  *
  * @package App\Models
  */
@@ -32,33 +41,53 @@ class Company extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
-//		'created_at' => 'int',
-//		'updated_at' => 'int',
+		'company_category_id' => 'int',
+		'company_status_id' => 'int',
+		'company_size_id' => 'int',
 		'sort' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'status',
-		'remark',
-		'sort',
 		'logo',
 		'number',
 		'profile',
 		'phone',
 		'wechat',
-		'qq'
+		'qq',
+		'company_category_id',
+		'company_status_id',
+		'company_size_id',
+		'imgs',
+		'sort',
+		'remark'
 	];
 
-    public function setProfileAttribute($profile)
+	public function company_category()
+	{
+		return $this->belongsTo(CompanyCategory::class);
+	}
+
+	public function company_size()
+	{
+		return $this->belongsTo(CompanySize::class);
+	}
+
+	public function company_status()
+	{
+		return $this->belongsTo(CompanyStatus::class);
+	}
+
+    public function setImgsAttribute($imgs)
     {
-        if (is_array($profile)) {
-            $this->attributes['profile'] = json_encode($profile);
+        if (is_array($imgs)) {
+            $this->attributes['imgs'] = json_encode($imgs);
         }
     }
 
-    public function getProfileAttribute($profile)
+    public function getImgsAttribute($imgs)
     {
-        return json_decode($profile, true);
+        return json_decode($imgs, true);
     }
 }
