@@ -27,5 +27,9 @@ Route::group([
     $router->resource('company-size', 'CompanySizeController'); //规模管理
     $router->resource('company-status', 'CompanyStatusController'); //状态管理
 
+    $router->resource('districts', 'DistrictController'); //地区管理
+
+
+
 
 });

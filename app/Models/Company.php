@@ -2,13 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 22 Jun 2018 14:41:05 +0800.
+ * Date: Fri, 22 Jun 2018 15:46:57 +0800.
  */
 
 namespace App\Models;
 
 use Reliese\Database\Eloquent\Model as Eloquent;
-
 
 /**
  * Class Company
@@ -30,10 +29,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $remark
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property int $district_id
  * 
- * @property \App\Models\CompanyCategory $company_category
- * @property \App\Models\CompanySize $company_size
- * @property \App\Models\CompanyStatus $company_status
+ * @property CompanyCategory $company_category
+ * @property CompanySize $company_size
+ * @property CompanyStatus $company_status
+ * @property District $district
  *
  * @package App\Models
  */
@@ -44,7 +45,8 @@ class Company extends Eloquent
 		'company_category_id' => 'int',
 		'company_status_id' => 'int',
 		'company_size_id' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
+		'district_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -61,7 +63,8 @@ class Company extends Eloquent
 		'company_size_id',
 		'imgs',
 		'sort',
-		'remark'
+		'remark',
+		'district_id'
 	];
 
 	public function company_category()
@@ -77,6 +80,11 @@ class Company extends Eloquent
 	public function company_status()
 	{
 		return $this->belongsTo(CompanyStatus::class);
+	}
+
+	public function district()
+	{
+		return $this->belongsTo(District::class);
 	}
 
     public function setImgsAttribute($imgs)

@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormOptions;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -37,4 +38,6 @@ class CompanyStatus extends Eloquent
 		'remark',
 		'sort'
 	];
+
+	use FormOptions;
 }
