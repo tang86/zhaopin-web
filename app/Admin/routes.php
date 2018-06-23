@@ -26,6 +26,8 @@ Route::group([
     $router->resource('company-categories', 'CompanyCategoryController'); //行业管理
     $router->resource('company-size', 'CompanySizeController'); //规模管理
     $router->resource('company-status', 'CompanyStatusController'); //状态管理
+    $router->resource('positions', 'PositionController'); //职位管理
+    $router->resource('salaries', 'SalaryController'); //薪资范围管理
 
     $router->resource('districts', 'DistrictController'); //地区管理
 

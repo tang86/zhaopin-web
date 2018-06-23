@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormOptions;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -66,6 +67,8 @@ class Company extends Eloquent
 		'remark',
 		'district_id'
 	];
+
+	use FormOptions;
 
 	public function company_category()
 	{

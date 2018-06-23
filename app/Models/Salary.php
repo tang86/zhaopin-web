@@ -2,11 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Sat, 23 Jun 2018 23:05:01 +0800.
  */
 
 namespace App\Models;
 
+use App\Models\Traits\FormOptions;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -19,6 +20,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $created_at
  * @property int $updated_at
  * @property int $sort
+ * @property float $floor
+ * @property float $ceil
  *
  * @package App\Models
  */
@@ -28,13 +31,19 @@ class Salary extends Eloquent
 		'status' => 'int',
 		'created_at' => 'int',
 		'updated_at' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
+		'floor' => 'float',
+		'ceil' => 'float'
 	];
 
 	protected $fillable = [
 		'name',
 		'status',
 		'remark',
-		'sort'
+		'sort',
+		'floor',
+		'ceil'
 	];
+
+	use FormOptions;
 }
