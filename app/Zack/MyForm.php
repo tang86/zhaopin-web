@@ -95,5 +95,43 @@ class MyForm extends Form
 
         return $prepared;
     }
+
+    protected function prepareUpdate(array $updates, $oneToOneRelation = false)
+    {
+        $prepared = [];
+
+        foreach ($this->builder->fields() as $field) {
+            $columns = $field->column();
+
+            // If column not in input array data, then continue.
+            if (!array_has($updates, $columns)) {
+                continue;
+            }
+
+            if ($this->invalidColumn($columns, $oneToOneRelation)) {
+                continue;
+            }
+
+            $value = $this->getDataByColumn($updates, $columns);
+
+            $value = $field->prepare($value);
+
+            if (is_array($columns)) {
+                foreach ($columns as $name => $column) {
+                    if (is_null($value[$name])) {
+                        $value[$name] = '';
+                    }
+                    array_set($prepared, $column, $value[$name]);
+                }
+            } elseif (is_string($columns)) {
+                if (is_null($value)) {
+                    $value = '';
+                }
+                array_set($prepared, $columns, $value);
+            }
+        }
+
+        return $prepared;
+    }
     
 }

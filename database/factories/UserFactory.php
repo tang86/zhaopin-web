@@ -34,17 +34,7 @@ $factory->define(\App\Models\CouponsRelUser::class, function (Faker $faker) {
         'status' => true
     ];
 });
-$factory->define(\App\Models\News::class, function (Faker $faker) {
-    return [
-        'title' => $faker->name,
-        'brief' => $faker->name,
-        'banner' => $faker->randomElement(\App\User::all()->pluck('head_url')->toArray()),
-        'content' => $faker->name,
-        'like_num' => $faker->numberBetween(),
-        'read_num' => $faker->numberBetween(),
-        'sort' => $faker->numberBetween(),
-    ];
-});
+
 $factory->define(\App\Models\Comment::class, function (Faker $faker) {
     return [
         'goods_id' => 1,

@@ -82,7 +82,7 @@ class CompanyController extends Controller
             $grid->id('ID')->sortable();
             $grid->name('名称');
             $grid->status('状态')->display(function ($status_id) {
-                return slef::$STATUS[$status_id];
+                return self::$STATUS[$status_id];
             });
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {

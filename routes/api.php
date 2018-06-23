@@ -18,17 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
-    Route::post('questions', 'EvaluationController@questions');
-    Route::post('answer', 'EvaluationController@answer');
-    Route::post('grade', 'EvaluationController@grade');
-    Route::post('history', 'EvaluationController@history');
-    Route::post('histories', 'EvaluationController@histories');
+    Route::get('companies/{company}', 'CompanyController@show');
+
     Route::post('login', 'LoginController@login');
-    Route::get('rand_order', 'HomeController@randOrder');
+
     Route::get('get_banner_news', 'NewsController@getBannerNews');
+    Route::get('get_notices', 'NoticeController@getNotices');
     Route::resource('news', 'NewsController');
-    Route::resource('goods', 'GoodsController');
-    Route::get('comments', 'CommentsController@index');
+
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('coupons', 'CouponsController@store');
         Route::post('getCoupon/{coupon}', 'CouponsController@getCoupon');

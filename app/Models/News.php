@@ -32,6 +32,7 @@ class News extends Eloquent
 	protected $casts = [
 		'like_num' => 'int',
 		'read_num' => 'int',
+		'init_read_num' => 'int',
 		'sort' => 'int'
 	];
 
@@ -43,7 +44,22 @@ class News extends Eloquent
 		'content',
 		'like_num',
 		'read_num',
+		'init_read_num',
 		'sort',
 		'banner_status'
 	];
+
+    static public function formatHits($hits)
+    {
+        $show = '';
+        if ($hits < 1000) {
+            $show = $hits;
+        } elseif ($hits < 10000) {
+            $show = floor($hits/1000).'k+';
+        } else {
+            $show = floor($hits/10000).'w+';
+        }
+
+        return $show;
+    }
 }
