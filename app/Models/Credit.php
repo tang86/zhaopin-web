@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Sun, 24 Jun 2018 18:06:32 +0800.
  */
 
 namespace App\Models;
@@ -16,9 +16,12 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property int $status
  * @property string $remark
- * @property int $created_at
- * @property int $updated_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property int $sort
+ * @property int $points
+ * 
+ * @property \Illuminate\Database\Eloquent\Collection $users
  *
  * @package App\Models
  */
@@ -26,15 +29,21 @@ class Credit extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
-		'created_at' => 'int',
-		'updated_at' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
+		'points' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'status',
 		'remark',
-		'sort'
+		'sort',
+		'points'
 	];
+
+	public function users()
+	{
+		return $this->belongsToMany(\App\Models\User::class, 'user_has_credits')
+					->withPivot('id', 'points');
+	}
 }

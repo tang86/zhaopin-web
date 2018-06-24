@@ -30,6 +30,8 @@ Route::group([
     $router->resource('salaries', 'SalaryController'); //薪资范围管理
 
     $router->resource('districts', 'DistrictController'); //地区管理
+    $router->resource('intentions', 'IntentionController'); //求职意向管理
+    $router->resource('credits', 'CreditController'); //积分管理
 
 
 

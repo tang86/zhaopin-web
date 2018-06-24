@@ -2,13 +2,13 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 22 Jun 2018 13:54:16 +0800.
+ * Date: Sun, 24 Jun 2018 12:56:00 +0800.
  */
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
 use App\Models\Traits\FormOptions;
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class CompanySize
@@ -20,24 +20,38 @@ use App\Models\Traits\FormOptions;
  * @property int $sort
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property int $min
+ * @property int $max
+ * 
+ * @property \Illuminate\Database\Eloquent\Collection $companies
  *
  * @package App\Models
  */
 class CompanySize extends Eloquent
 {
+    use FormOptions;
+
 	protected $table = 'company_size';
 
 	protected $casts = [
 		'status' => 'int',
-		'sort' => 'int'
+		'sort' => 'int',
+		'min' => 'int',
+		'max' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
 		'status',
 		'remark',
-		'sort'
+		'sort',
+		'min',
+		'max'
 	];
 
-	use FormOptions;
+	public function companies()
+	{
+		return $this->hasMany(Company::class);
+	}
+
 }

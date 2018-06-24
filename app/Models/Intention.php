@@ -2,11 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Sun, 24 Jun 2018 16:46:05 +0800.
  */
 
 namespace App\Models;
 
+use App\Models\Traits\FormOptions;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -16,18 +17,18 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property int $status
  * @property string $remark
- * @property int $created_at
- * @property int $updated_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property int $sort
  *
  * @package App\Models
  */
 class Intention extends Eloquent
 {
+    use FormOptions;
+
 	protected $casts = [
 		'status' => 'int',
-		'created_at' => 'int',
-		'updated_at' => 'int',
 		'sort' => 'int'
 	];
 

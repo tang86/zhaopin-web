@@ -4,16 +4,17 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\CompanySize;
+use App\Models\Intention;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Grid;
 use App\Zack\Facades\MyAdmin as Admin;
 use App\Zack\MyForm as Form;
 
-class CompanySizeController extends Controller
+class IntentionController extends Controller
 {
 
-    protected  $title = '规模';
+    protected  $title = '求职意向';
 
     static $STATUS = [
 
@@ -75,7 +76,7 @@ class CompanySizeController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(CompanySize::class, function (Grid $grid) {
+        return Admin::grid(Intention::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
             $grid->name('名称');
             $grid->status('状态')->display(function ($status_id) {
@@ -103,11 +104,9 @@ class CompanySizeController extends Controller
     public function form()
     {
 
-        return Admin::form(CompanySize::class, function (Form $form) {
+        return Admin::form(Intention::class, function (Form $form) {
             $form->display('id', 'ID');
             $form->text('name', '名称')->rules('required');
-            $form->text('min', '人数下限')->rules('required|numeric');
-            $form->text('max', '人数上限')->rules('required|numeric');
             $form->text('sort', '排序')->default(0);
             $form->radio('status', '状态')->values(self::$STATUS)->default(1);
 
