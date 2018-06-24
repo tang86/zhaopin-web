@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['middleware' => 'auth:api'], function () {
 
-        Route::post('users_update', 'UsersController@update');
+        Route::post('users_update', 'UserController@update');
 
     });
     Route::post('wechat_pay/createWechatOrder', 'PayController@createWechatOrder');

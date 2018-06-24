@@ -2,11 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Sun, 24 Jun 2018 21:01:47 +0800.
  */
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
@@ -31,19 +32,22 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
+ * @property int $points
  * 
  * @property \Illuminate\Database\Eloquent\Collection $resumes
+ * @property \Illuminate\Database\Eloquent\Collection $credits
  *
  * @package App\Models
  */
 class User extends Eloquent
 {
-	use \Illuminate\Database\Eloquent\SoftDeletes;
+	use SoftDeletes;
 
 	protected $casts = [
 		'dealer_id' => 'int',
 		'inviter_id' => 'int',
-		'status' => 'int'
+		'status' => 'int',
+		'points' => 'int'
 	];
 
 	protected $hidden = [
@@ -66,11 +70,28 @@ class User extends Eloquent
 		'poster_id',
 		'head_url',
 		'status',
-		'remember_token'
+		'remember_token',
+		'points'
 	];
 
 	public function resumes()
 	{
-		return $this->hasMany(\App\Models\Resume::class);
+		return $this->hasMany(Resume::class);
 	}
+
+	public function credits()
+	{
+		return $this->belongsToMany(Credit::class, 'user_has_credits')
+					->withPivot('id', 'points', 'status', 'remark');
+	}
+
+	static public function increasePoints($points, $user_id)
+    {
+        $user = static::find($user_id);
+        $user->points += $points;
+        $user->save();
+
+    }
+
+
 }
