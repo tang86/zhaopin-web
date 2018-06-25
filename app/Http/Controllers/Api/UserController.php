@@ -33,12 +33,6 @@ class UserController extends Controller
         $report->address = $request->address;
         $report->save();
 
-//        $result = User::where('id', $user->id)->update([
-//            'name' => $request->name,
-//            'sex' => $request->sex,
-//            'tel' => $request->tel,
-//            'address' => $request->address,
-//        ]);
         return $this->sendResponse($request->all(), '修改成功');
     }
 
