@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CompanySeeder extends Seeder
+class CompaniesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,7 @@ class CompanySeeder extends Seeder
     {
         \App\Models\Company::truncate();
 
-        factory(\App\Models\Company::class,100)->create();
+        $companies = factory(\App\Models\Company::class,100)->make();
+        \App\Models\Company::insert($companies->toArray());
     }
 }

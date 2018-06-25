@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NoticeSeeder extends Seeder
+class NoticesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,7 @@ class NoticeSeeder extends Seeder
     {
         \App\Models\Notice::truncate();
 
-        factory(\App\Models\Notice::class,3)->create();
+        $notices = factory(\App\Models\Notice::class,3)->make();
+        \App\Models\Notice::insert($notices->toArray());
     }
 }

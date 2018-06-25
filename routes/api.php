@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::group(['middleware' => 'auth:api'], function () {
 
+        Route::get('users/points', 'UserController@points');
         Route::post('users_update', 'UserController@update');
 
     });

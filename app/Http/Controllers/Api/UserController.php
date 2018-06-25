@@ -66,4 +66,11 @@ class UserController extends Controller
 
 
     }
+
+    public function points(UserRequest $request)
+    {
+        $user = Auth::guard('api')->user();
+        return $this->sendResponse(['points'=>$user->points], '查询成功');
+
+    }
 }

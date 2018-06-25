@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NewsSeeder extends Seeder
+class NewsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,7 @@ class NewsSeeder extends Seeder
     {
         \App\Models\News::truncate();
 
-        factory(\App\Models\News::class,100)->create();
+        $news = factory(\App\Models\News::class,1000)->make();
+        \App\Models\News::insert($news->toArray());
     }
 }

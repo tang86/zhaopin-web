@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('inviter_id')->nullable()->comment('邀请人id');
             $table->enum('sex', [1, 2])->nullable()->comment('性别：1：男 2：女');
             $table->string('address')->nullable()->comment('地址');
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->conmment('微信昵称');
             $table->string('tel')->nullable();
             $table->string('password')->nullable();
             $table->string('open_id')->nullable()->conmment('小程序open_id');
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('ticket')->nullable()->conmment('二维码id');
             $table->string('union_id')->nullable()->conmment('公众号小程序唯一id');
             $table->string('poster_id',32)->nullable()->conmment('海报媒体id');
-            $table->string('head_url')->nullable();
+            $table->string('head_url')->nullable()->conmment('微信头像地址');
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
