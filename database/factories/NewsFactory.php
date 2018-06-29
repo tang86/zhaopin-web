@@ -8,7 +8,7 @@ $factory->define(\App\Models\News::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'brief' => $faker->paragraph(1),
-        'banner' => $faker->randomElement(\App\User::all()->pluck('head_url')->toArray()),
+        'banner' => 'news/5e554fbdd7fe34bd25456fdbd12479a0.png',
         'content' => $faker->paragraph,
         'like_num' => $faker->numberBetween(),
         'read_num' => $faker->numberBetween(),

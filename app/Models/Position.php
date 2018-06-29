@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 23 Jun 2018 22:41:27 +0800.
+ * Date: Fri, 29 Jun 2018 15:43:56 +0800.
  */
 
 namespace App\Models;
@@ -27,21 +27,26 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $benefit
  * @property int $district_id
  * @property int $company_id
+ * @property int $salary_id
  * 
  * @property \App\Models\Company $company
  * @property \App\Models\District $district
+ * @property \App\Models\Salary $salary
  *
  * @package App\Models
  */
 class Position extends Eloquent
 {
+    use FormOptions;
+
 	protected $casts = [
 		'status' => 'int',
 		'sort' => 'int',
 		'room_and_board' => 'int',
 		'number' => 'int',
 		'district_id' => 'int',
-		'company_id' => 'int'
+		'company_id' => 'int',
+		'salary_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -55,10 +60,9 @@ class Position extends Eloquent
 		'content',
 		'benefit',
 		'district_id',
-		'company_id'
+		'company_id',
+		'salary_id'
 	];
-
-	use FormOptions;
 
 	public function company()
 	{
@@ -68,5 +72,10 @@ class Position extends Eloquent
 	public function district()
 	{
 		return $this->belongsTo(District::class);
+	}
+
+	public function salary()
+	{
+		return $this->belongsTo(Salary::class);
 	}
 }

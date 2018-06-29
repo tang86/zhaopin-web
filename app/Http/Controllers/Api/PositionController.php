@@ -12,10 +12,16 @@ class PositionController extends Controller
     {
         $page_size = $request->page_size??10;
         $data = Position::where('status', 1)
+            ->with('company')
+            ->with('district')
+            ->with('salary')
             ->orderBy('sort', 'desc')
             ->paginate($page_size);
 
         if(!empty($data)){
+            foreach ($data as &$item) {
+                $item['keywords_arr'] = explode(' ', $item['keywords']);
+            }
 
             return $this->sendResponse($data, '获取成功！');
         }

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 23 Jun 2018 23:05:01 +0800.
+ * Date: Fri, 29 Jun 2018 16:02:43 +0800.
  */
 
 namespace App\Models;
@@ -17,20 +17,22 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property int $status
  * @property string $remark
- * @property int $created_at
- * @property int $updated_at
  * @property int $sort
  * @property float $floor
  * @property float $ceil
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * 
+ * @property \Illuminate\Database\Eloquent\Collection $positions
  *
  * @package App\Models
  */
 class Salary extends Eloquent
 {
+    use FormOptions;
+
 	protected $casts = [
 		'status' => 'int',
-		'created_at' => 'int',
-		'updated_at' => 'int',
 		'sort' => 'int',
 		'floor' => 'float',
 		'ceil' => 'float'
@@ -45,5 +47,8 @@ class Salary extends Eloquent
 		'ceil'
 	];
 
-	use FormOptions;
+	public function positions()
+	{
+		return $this->hasMany(Position::class);
+	}
 }

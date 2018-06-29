@@ -13,7 +13,7 @@ class NewsTableSeeder extends Seeder
     {
         \App\Models\News::truncate();
 
-        $news = factory(\App\Models\News::class,1000)->make();
+        $news = factory(\App\Models\News::class,35)->make();
         \App\Models\News::insert($news->toArray());
     }
 }

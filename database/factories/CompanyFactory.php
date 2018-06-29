@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Company::class, function (Faker $faker) {
     return [
-        'name' => $faker->sentence(6),
+        'name' => '公司名称'.$faker->name,
         'number' => $faker->numberBetween(),
         'profile' => $faker->paragraph(1),
         'company_category_id' => $faker->randomElement(\App\Models\CompanyCategory::all()->pluck('id')->toArray()),
