@@ -30,6 +30,16 @@ class PositionController extends Controller
 
     public function show(Position $position)
     {
+        $position->company;
+        $position->district;
+        $position->salary;
+        $position->company->company_category;
+        $position->company->company_size;
+        $position->company->company_status;
+        $position->company->district;
+
+        $position['keywords_arr'] = explode(' ', $position->keywords);
+
         return $this->sendResponse($position, '获取详情成功');
     }
 

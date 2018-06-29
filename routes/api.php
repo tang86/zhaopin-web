@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
-    Route::get('companies/{company}', 'CompanyController@show');
+    Route::get('company/{company}', 'CompanyController@show');
 
     Route::post('login', 'LoginController@login');
 

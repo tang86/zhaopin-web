@@ -36,6 +36,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property CompanySize $company_size
  * @property CompanyStatus $company_status
  * @property District $district
+ * @property Positions $positions
  *
  * @package App\Models
  */
@@ -89,6 +90,11 @@ class Company extends Eloquent
 	{
 		return $this->belongsTo(District::class);
 	}
+
+	public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 
     public function setImgsAttribute($imgs)
     {
