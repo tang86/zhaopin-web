@@ -24,13 +24,16 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::get('get_banner_news', 'NewsController@getBannerNews');
     Route::get('positions', 'PositionController@index');
-    Route::get('position/{position}', 'PositionController@show');
+    Route::get('position/{position}', 'PositionController@show')->where('position','\d+');
+    Route::get('position/is-sent/', 'PositionController@isSent');
     Route::get('get_notices', 'NoticeController@getNotices');
     Route::resource('news', 'NewsController');
 
     Route::group(['middleware' => 'auth:api'], function () {
 
         Route::get('users/points', 'UserController@points');
+        Route::post('users/resume/create-or-update', 'UserController@updateResume');
+        Route::post('users/send-resume', 'UserController@sendResume');
         Route::post('users_update', 'UserController@update');
 
     });

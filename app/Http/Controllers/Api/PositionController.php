@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Position;
+use App\Models\UserHasPosition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -41,6 +42,22 @@ class PositionController extends Controller
         $position['keywords_arr'] = explode(' ', $position->keywords);
 
         return $this->sendResponse($position, '获取详情成功');
+    }
+
+    public function isSent(Request $request)
+    {
+
+        $where = [
+            'user_id' => $request->get('user_id'),
+            'position_id' => $request->get('position_id'),
+        ];
+        $user_has_position = UserHasPosition::where($where)->first();
+        if ($user_has_position) {
+            return $this->sendResponse(true, '已投递');
+        } else {
+            return $this->sendResponse(false, '未投递');
+        }
+
     }
 
 
