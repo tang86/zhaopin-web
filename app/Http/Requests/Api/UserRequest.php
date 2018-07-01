@@ -26,10 +26,10 @@ class UserRequest extends FormRequest
         switch ($this->route()->getActionMethod()) {
             case 'update':
                 return [
-                    'name' => 'required|max:16',
-                    'sex' => 'required|between:1,2',
-                    'tel' => 'required|max:16',
-                    'address' => 'required|max:255',
+//                    'name' => 'required|max:16',
+//                    'sex' => 'required|between:1,2',
+//                    'tel' => 'required|max:16',
+//                    'address' => 'required|max:255',
                 ];
             default:
                 return [];

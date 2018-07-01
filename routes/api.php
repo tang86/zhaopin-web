@@ -22,19 +22,25 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::post('login', 'LoginController@login');
 
+    Route::get('code', 'CodeController@create');
     Route::get('get_banner_news', 'NewsController@getBannerNews');
     Route::get('positions', 'PositionController@index');
+    Route::get('sent-positions', 'PositionController@sentPositions');
     Route::get('position/{position}', 'PositionController@show')->where('position','\d+');
     Route::get('position/is-sent/', 'PositionController@isSent');
     Route::get('get_notices', 'NoticeController@getNotices');
     Route::resource('news', 'NewsController');
 
+
+
     Route::group(['middleware' => 'auth:api'], function () {
 
+        Route::get('users/get-resume', 'UserController@getResume');
         Route::get('users/points', 'UserController@points');
         Route::post('users/resume/create-or-update', 'UserController@updateResume');
         Route::post('users/send-resume', 'UserController@sendResume');
-        Route::post('users_update', 'UserController@update');
+        Route::post('users/update', 'UserController@update');
+        Route::post('users/add-experience', 'UserController@addExperience');
 
     });
     Route::post('wechat_pay/createWechatOrder', 'PayController@createWechatOrder');

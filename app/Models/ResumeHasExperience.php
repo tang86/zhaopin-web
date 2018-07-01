@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 24 Jun 2018 18:08:13 +0800.
+ * Date: Sun, 01 Jul 2018 14:52:40 +0800.
  */
 
 namespace App\Models;
@@ -10,29 +10,34 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class ResumeHasExpCompany
+ * Class ResumeHasExperience
  * 
+ * @property int $id
  * @property int $resume_id
- * @property int $exp_company_id
+ * @property int $experience_id
  * 
- * @property \App\Models\ExpCompany $exp_company
+ * @property \App\Models\Experience $experience
  * @property \App\Models\Resume $resume
  *
  * @package App\Models
  */
-class ResumeHasExpCompany extends Eloquent
+class ResumeHasExperience extends Eloquent
 {
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
 		'resume_id' => 'int',
-		'exp_company_id' => 'int'
+		'experience_id' => 'int'
 	];
 
-	public function exp_company()
+	protected $fillable = [
+		'resume_id',
+		'experience_id'
+	];
+
+	public function experience()
 	{
-		return $this->belongsTo(\App\Models\ExpCompany::class);
+		return $this->belongsTo(\App\Models\Experience::class);
 	}
 
 	public function resume()

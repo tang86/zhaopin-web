@@ -33,7 +33,8 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * @property int $points
- * 
+ * @property string $mobile
+ *
  * @property \Illuminate\Database\Eloquent\Collection $resumes
  * @property \Illuminate\Database\Eloquent\Collection $credits
  *
@@ -71,7 +72,8 @@ class User extends Eloquent
 		'head_url',
 		'status',
 		'remember_token',
-		'points'
+		'points',
+        'mobile'
 	];
 
 	public function resumes()
@@ -91,6 +93,19 @@ class User extends Eloquent
         $user->points += $points;
         $user->save();
 
+    }
+
+    public function resume()
+    {
+        return $this->hasOne(Resume::class);
+    }
+
+    public function genders()
+    {
+        return [
+            '1' => '男',
+            '2' => '女',
+        ];
     }
 
 

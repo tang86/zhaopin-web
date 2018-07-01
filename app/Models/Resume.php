@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 16 Jun 2018 17:08:38 +0800.
+ * Date: Sun, 01 Jul 2018 16:54:55 +0800.
  */
 
 namespace App\Models;
@@ -14,15 +14,22 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $id
  * @property string $name
+ * @property string $gender
  * @property int $status
  * @property string $remark
- * @property int $created_at
- * @property int $updated_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property int $sort
  * @property int $worked_at
  * @property int $user_id
+ * @property string $age
+ * @property string $city
+ * @property string $intentions_name
  * 
  * @property \App\Models\User $user
+ * @property \Illuminate\Database\Eloquent\Collection $experiences
+ * @property \Illuminate\Database\Eloquent\Collection $resume_has_exp_companies
+ * @property \Illuminate\Database\Eloquent\Collection $positions
  *
  * @package App\Models
  */
@@ -30,8 +37,6 @@ class Resume extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
-		'created_at' => 'int',
-		'updated_at' => 'int',
 		'sort' => 'int',
 		'worked_at' => 'int',
 		'user_id' => 'int'
@@ -39,15 +44,35 @@ class Resume extends Eloquent
 
 	protected $fillable = [
 		'name',
+		'gender',
 		'status',
 		'remark',
 		'sort',
 		'worked_at',
-		'user_id'
+		'user_id',
+		'age',
+		'city',
+		'intentions_name'
 	];
 
 	public function user()
 	{
 		return $this->belongsTo(\App\Models\User::class);
+	}
+
+	public function experiences()
+	{
+		return $this->hasMany(\App\Models\Experience::class);
+	}
+
+	public function resume_has_exp_companies()
+	{
+		return $this->hasMany(\App\Models\ResumeHasExpCompany::class);
+	}
+
+	public function positions()
+	{
+		return $this->belongsToMany(\App\Models\Position::class, 'resume_has_positions')
+					->withPivot('id', 'user_id');
 	}
 }

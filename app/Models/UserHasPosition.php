@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 30 Jun 2018 10:20:54 +0800.
+ * Date: Sun, 01 Jul 2018 21:57:03 +0800.
  */
 
 namespace App\Models;
@@ -15,9 +15,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $id
  * @property int $user_id
  * @property int $position_id
+ * @property int $resume_id
  * 
- * @property \App\Models\Position $position
+ * @property \App\Models\Resume $resume
  * @property \App\Models\User $user
+ * @property \App\Models\Position $position
  *
  * @package App\Models
  */
@@ -27,21 +29,28 @@ class UserHasPosition extends Eloquent
 
 	protected $casts = [
 		'user_id' => 'int',
-		'position_id' => 'int'
+		'position_id' => 'int',
+		'resume_id' => 'int'
 	];
 
 	protected $fillable = [
 		'user_id',
-		'position_id'
+		'position_id',
+		'resume_id'
 	];
 
-	public function position()
+	public function resume()
 	{
-		return $this->belongsTo(Position::class);
+		return $this->belongsTo(\App\Models\Resume::class);
 	}
 
 	public function user()
 	{
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(\App\Models\User::class);
+	}
+
+	public function position()
+	{
+		return $this->belongsTo(\App\Models\Position::class);
 	}
 }

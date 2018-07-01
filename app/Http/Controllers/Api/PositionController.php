@@ -29,6 +29,33 @@ class PositionController extends Controller
         return $this->sendResponse(false, '没有数据！');
     }
 
+    public function sentPositions(Request $request)
+    {
+        $page_size = $request->page_size??10;
+        $user_id = $request->get('user_id');
+        $data = UserHasPosition::where(['user_id' => $user_id])->paginate($page_size);
+//        $data = Position::where('status', 1)
+//            ->with('company')
+//            ->with('district')
+//            ->with('salary')
+//            ->orderBy('sort', 'desc')
+//            ->paginate($page_size);
+
+        if(!empty($data)){
+            foreach ($data as &$item) {
+                $item->position;
+                $item->position->company;
+                $item->position->district;
+                $item->position->salary;
+
+                $item->position['keywords_arr'] = explode(' ', $item->position['keywords']);
+            }
+
+            return $this->sendResponse($data, '获取成功！');
+        }
+        return $this->sendResponse(false, '没有数据！');
+    }
+
     public function show(Position $position)
     {
         $position->company;
