@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('code', 'CodeController@create');
     Route::get('get_banner_news', 'NewsController@getBannerNews');
     Route::get('positions', 'PositionController@index');
+    Route::get('intentions', 'IntentionController@index');
     Route::get('sent-positions', 'PositionController@sentPositions');
     Route::get('position/{position}', 'PositionController@show')->where('position','\d+');
     Route::get('position/is-sent/', 'PositionController@isSent');

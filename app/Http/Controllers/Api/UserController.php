@@ -103,6 +103,12 @@ class UserController extends Controller
         if ($request->has('workedDate')) {
             $resume->worked_at = strtotime($request->post('workedDate'));
         }
+        if ($request->has('city')) {
+            $resume->city = $request->post('city');
+        }
+        if ($request->has('intentions_name')) {
+            $resume->intentions_name = $request->post('intentions_name');
+        }
 
 
         $resume->save();
