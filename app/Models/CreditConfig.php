@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 24 Jun 2018 18:06:32 +0800.
+ * Date: Mon, 02 Jul 2018 15:14:36 +0800.
  */
 
 namespace App\Models;
@@ -10,7 +10,7 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Credit
+ * Class CreditConfig
  * 
  * @property int $id
  * @property string $name
@@ -21,11 +21,11 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $sort
  * @property int $points
  * 
- * @property \Illuminate\Database\Eloquent\Collection $users
+ * @property \Illuminate\Database\Eloquent\Collection $user_points_logs
  *
  * @package App\Models
  */
-class Credit extends Eloquent
+class CreditConfig extends Eloquent
 {
 	protected $casts = [
 		'status' => 'int',
@@ -41,9 +41,8 @@ class Credit extends Eloquent
 		'points'
 	];
 
-	public function users()
+	public function user_points_logs()
 	{
-		return $this->belongsToMany(\App\Models\User::class, 'user_has_credits')
-					->withPivot('id', 'points');
+		return $this->hasMany(\App\Models\UserPointsLog::class);
 	}
 }

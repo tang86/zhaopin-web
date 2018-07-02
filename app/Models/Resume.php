@@ -28,7 +28,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property \App\Models\User $user
  * @property \Illuminate\Database\Eloquent\Collection $experiences
- * @property \Illuminate\Database\Eloquent\Collection $resume_has_exp_companies
  * @property \Illuminate\Database\Eloquent\Collection $positions
  *
  * @package App\Models
@@ -63,11 +62,6 @@ class Resume extends Eloquent
 	public function experiences()
 	{
 		return $this->hasMany(\App\Models\Experience::class);
-	}
-
-	public function resume_has_exp_companies()
-	{
-		return $this->hasMany(\App\Models\ResumeHasExpCompany::class);
 	}
 
 	public function positions()
