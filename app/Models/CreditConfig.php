@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 02 Jul 2018 15:14:36 +0800.
+ * Date: Mon, 02 Jul 2018 17:30:09 +0800.
  */
 
 namespace App\Models;
@@ -20,6 +20,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * @property int $sort
  * @property int $points
+ * @property int $max
  * 
  * @property \Illuminate\Database\Eloquent\Collection $user_points_logs
  *
@@ -30,7 +31,8 @@ class CreditConfig extends Eloquent
 	protected $casts = [
 		'status' => 'int',
 		'sort' => 'int',
-		'points' => 'int'
+		'points' => 'int',
+		'max' => 'int'
 	];
 
 	protected $fillable = [
@@ -38,7 +40,8 @@ class CreditConfig extends Eloquent
 		'status',
 		'remark',
 		'sort',
-		'points'
+		'points',
+		'max'
 	];
 
 	public function user_points_logs()

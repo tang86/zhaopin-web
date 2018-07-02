@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Mon, 02 Jul 2018 15:16:36 +0800.
+ * Date: Mon, 02 Jul 2018 17:30:22 +0800.
  */
 
 namespace App\Models;
@@ -18,6 +18,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $points
  * @property int $status
  * @property string $remark
+ * @property string $code
  * 
  * @property \App\Models\CreditConfig $credit_config
  * @property \App\Models\User $user
@@ -40,7 +41,8 @@ class UserPointsLog extends Eloquent
 		'credit_config_id',
 		'points',
 		'status',
-		'remark'
+		'remark',
+		'code'
 	];
 
 	public function credit_config()
