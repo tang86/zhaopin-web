@@ -54,4 +54,34 @@ class UserPointsLog extends Eloquent
 	{
 		return $this->belongsTo(\App\Models\User::class);
 	}
+
+	static public function add($user_id, CreditConfig $credit_config, $code, $status = 1)
+    {
+        $user_points_log = new UserPointsLog();
+        $user_points_log->user_id = $user_id;
+        $user_points_log->points = $credit_config->points;
+        $user_points_log->code = $code;
+        $user_points_log->status = $status;
+        $user_points_log->remark = $credit_config->name;
+        $user_points_log->credit_config_id = $credit_config->id;
+        return $user_points_log->save();
+
+    }
+    static public function canIAdd($user_id, CreditConfig $credit_config, $code)
+    {
+        if ($credit_config->max > 0) {
+            $where = [
+                'user_id' => $user_id,
+                'code' => $code,
+                'credit_config_id' => $credit_config->id
+            ];
+            $count = UserPointsLog::where($where)->count();
+            if ($count >= $credit_config->max) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 }

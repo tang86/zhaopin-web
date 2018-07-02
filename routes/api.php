@@ -38,6 +38,13 @@ Route::group(['namespace' => 'Api'], function () {
 
         Route::get('users/get-resume', 'UserController@getResume');
         Route::get('users/points', 'UserController@points');
+        Route::get('users/points-logs', 'UserController@pointsLogs');
+        Route::get('users/points-friend-resume-logs', 'UserController@pointsFriendResumeLogs');
+        Route::post('credit/increase-points-read', 'UserController@increasePointsRead');
+        Route::post('credit/increase-points-invite', 'UserController@increasePointsInvite');
+        Route::post('credit/increase-points-resume', 'UserController@increasePointsResume');
+        Route::post('credit/increase-points-friend-resume', 'UserController@increasePointsFriendResume');
+        Route::post('credit/increase-points-share', 'UserController@increasePointsShare');
         Route::post('users/resume/create-or-update', 'UserController@updateResume');
         Route::post('users/send-resume', 'UserController@sendResume');
         Route::post('users/update', 'UserController@update');
