@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
+
+
+    Route::get('districts', 'DistrictController@index');
     Route::get('company/{company}', 'CompanyController@show');
 
     Route::post('login', 'LoginController@login');
