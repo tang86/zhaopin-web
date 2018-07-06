@@ -10,16 +10,18 @@ class DistrictController extends Controller
 {
     public function index()
     {
-        $data = [
-            'all' => [],
-        'provinces' => [],
-        'cities' => [],
+
+        $data = [];
+        $where = [
+            'parent_id' => 0
         ];
-        $districts = District::where(['parent_id' => 0])
+        $districts = District::where($where)
             ->with('districts')
             ->get();
-        $data['all'] = $districts;
+
+
         foreach ($districts as $district) {
+            $data['all'][] = $district;
             $data['provinces'][$district->id] = $district->name;
             $data['cities'][$district->id] = $district->districts;
         }
