@@ -40,6 +40,8 @@ class PointsController extends Controller
                 $complete_resume_number++;
                 $points += $credit_config_resume->points;
 
+            } else {
+                $invite_user_points_log['complete_resume'] = false;
             }
         }
 
