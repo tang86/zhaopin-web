@@ -40,6 +40,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
 
         //积分
+        Route::get('users/invite-logs', 'PointsController@inviteLogs');
+        Route::get('users/withdraw-logs', 'PointsController@withdrawLogs');
         Route::get('users/points-logs', 'PointsController@pointsLogs');
         Route::get('users/points-friend-resume-logs', 'PointsController@pointsFriendResumeLogs');
         Route::post('credit/increase-points-read', 'PointsController@increasePointsRead');

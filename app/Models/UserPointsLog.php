@@ -84,4 +84,9 @@ class UserPointsLog extends Eloquent
         return true;
 
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return date('m月d日 H:i:s', strtotime($this->attributes['created_at']));
+    }
 }

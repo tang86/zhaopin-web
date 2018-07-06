@@ -16,27 +16,32 @@ class CreditConfigsTableSeeder extends Seeder
 
         $data = [
             [
+                'id' => 1,
                 'name' => '阅读',
                 'points' => 1,
                 'max' => 3,
             ],
             [
+                'id' => 2,
                 'name' => '邀请',
-                'points' => 50,
+                'points' => 30,
                 'max' => 1,
 
             ],
             [
+                'id' => 3,
                 'name' => '完善简历',
                 'points' => 50,
                 'max' => 1,
             ],
             [
+                'id' => 4,
                 'name' => '被邀请人完善简历',
-                'points' => 50,
+                'points' => 20,
                 'max' => 0,
             ],
             [
+                'id' => 5,
                 'name' => '分享',
                 'points' => 5,
                 'max' => 0,
