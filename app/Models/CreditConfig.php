@@ -44,6 +44,12 @@ class CreditConfig extends Eloquent
 		'max'
 	];
 
+	static public $STATUS = [
+	    0 => '处理中',
+	    1 => '成功',
+	    2 => '失败',
+    ];
+
 	public function user_points_logs()
 	{
 		return $this->hasMany(\App\Models\UserPointsLog::class);

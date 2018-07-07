@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Resume;
 use App\Models\User;
 use App\Models\UserHasPosition;
+use App\Models\UserPointsLog;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -36,13 +38,31 @@ class UserController extends Controller
     public function withdraw(UserRequest $request)
     {
         $user = Auth::guard('api')->user();
-        if ($request->points > $user->points) {
+
+        $withdraw_points = $request->money / config('credit.rate');
+
+        if ($withdraw_points > $user->points) {
             return $this->sendResponse(false, '积分不足');
         } else {
-            $user->points -= $request->points;
+            $user->points -= $withdraw_points;
             $user->save();
+            //
+            DB::update('SET FOREIGN_KEY_CHECKS=0;');
+            $user_points_log = new UserPointsLog();
+            $user_points_log->user_id = $user->id;
+            $user_points_log->credit_config_id = 0;
+            $user_points_log->points = -($withdraw_points);
+            $user_points_log->remark = "积分兑换：{$request->money} 元";
+            $user_points_log->code = "withdraw_user_id_{$user->id}";
 
-            return $this->sendResponse($user, '修改成功');
+            $user_points_log->save();
+
+            //返回
+            $data = [
+                'points' => $user->points,
+                'money' => $user->points * config('credit.rate')
+            ];
+            return $this->sendResponse($data, '修改成功');
         }
 
 
@@ -51,7 +71,11 @@ class UserController extends Controller
     public function points(UserRequest $request)
     {
         $user = Auth::guard('api')->user();
-        return $this->sendResponse(['points'=>$user->points], '查询成功');
+        $data = [
+            'points' => $user->points,
+            'money' => $user->points * config('credit.rate')
+        ];
+        return $this->sendResponse($data, '查询成功');
 
     }
 

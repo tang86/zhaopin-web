@@ -54,24 +54,33 @@ class PointsController extends Controller
 
         return $this->sendResponse($data, '查询成功');
     }
-    public function withdrawLogs()
+
+    public function withdrawLogs(Request $request)
     {
         $user = Auth::guard('api')->user();
+        $page_size = $request->page_size?:10;
+
         $where = [
             'user_id' => $user->id,
             'credit_config_id' => 0,
         ];
-        $user_points_logs = UserPointsLog::where($where)->orderByDesc('id')->get();
+        $user_points_logs = UserPointsLog::where($where)->orderByDesc('id')->paginate($page_size);
+        foreach ($user_points_logs as &$user_points_log) {
+            list($user_points_log['date'], $user_points_log['time']) = explode(' ', $user_points_log->created_at);
+            $user_points_log['status_name'] = CreditConfig::$STATUS[$user_points_log->status];
+            $user_points_log['money'] = str_replace('积分兑换：', '', $user_points_log->remark);
+        }
         return $this->sendResponse($user_points_logs, '查询成功');
     }
 
-    public function pointsLogs()
+    public function pointsLogs(Request $request)
     {
         $user = Auth::guard('api')->user();
+        $page_size = $request->page_size?:10;
         $where = [
             'user_id' => $user->id
         ];
-        $user_points_logs = UserPointsLog::where($where)->orderByDesc('id')->get();
+        $user_points_logs = UserPointsLog::where($where)->orderByDesc('id')->paginate($page_size);
         return $this->sendResponse($user_points_logs, '查询成功');
     }
 
@@ -79,6 +88,7 @@ class PointsController extends Controller
     {
 
     }
+
     public function increasePointsRead(UserRequest $request)
     {
         $user = Auth::guard('api')->user();
