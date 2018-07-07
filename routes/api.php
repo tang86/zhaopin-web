@@ -50,6 +50,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('credit/increase-points-friend-resume', 'PointsController@increasePointsFriendResume');
         Route::post('credit/increase-points-share', 'PointsController@increasePointsShare');
 
+        //绑定手机号
+        Route::post('users/bind-mobile', 'UserController@bindMobile');
         //提现
         Route::post('users/withdraw', 'UserController@withdraw');
 

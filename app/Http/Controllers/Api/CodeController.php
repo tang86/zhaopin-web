@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Code;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,6 +11,7 @@ class CodeController extends Controller
 {
     public function create(Request $request)
     {
+
         $code_code = rand(1000, 9999);
 
         $code = new Code();

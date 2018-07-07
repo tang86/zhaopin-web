@@ -175,4 +175,21 @@ class UserController extends Controller
         $resume->user->genders = $resume->user->genders();
         return $this->sendResponse($resume, '添加成功');
     }
+
+    public function bindMobile(UserRequest $request)
+    {
+        $user = Auth::guard('api')->user();
+        //检查用户手机号是否已经绑定
+        $where = [
+            'mobile' => $request->mobile
+        ];
+        $bind_user = User::where($where)->first();
+        if ($bind_user) {
+            return $this->sendResponse(['status' => 0], '手机号已经注册');
+        }
+
+        $user->mobile = $request->mobile;
+        $user->save();
+        return $this->sendResponse(['status' => 1], '手机号绑定成功');
+    }
 }

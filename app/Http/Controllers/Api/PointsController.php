@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -97,11 +98,13 @@ class PointsController extends Controller
         $user->save();
         if (UserPointsLog::canIAdd($user->id, $credit_config, $request->get('code'))) {
             UserPointsLog::add($user->id, $credit_config, $request->get('code'));
-            $message = '添加';
+            $status = 1;
+            $message = '积分增加成功';
         } else {
-            $message = '没有添加';
+            $status = 0;
+            $message = '无法获得积分';
         }
-        return $this->sendResponse($message, '修改成功');
+        return $this->sendResponse(['status' => $status ], $message);
     }
     public function increasePointsInvite(UserRequest $request)
     {
