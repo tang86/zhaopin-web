@@ -54,6 +54,11 @@ class Resume extends Eloquent
 		'intentions_name'
 	];
 
+	static public $STATUS = [
+	    0 => '离职',
+	    1 => '在职',
+    ];
+
 	public function user()
 	{
 		return $this->belongsTo(\App\Models\User::class);
@@ -61,7 +66,7 @@ class Resume extends Eloquent
 
 	public function experiences()
 	{
-		return $this->hasMany(\App\Models\Experience::class);
+		return $this->hasMany(\App\Models\Experience::class)->orderBy('started_at');
 	}
 
 	public function positions()

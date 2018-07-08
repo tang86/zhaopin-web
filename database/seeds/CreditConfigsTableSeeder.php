@@ -24,7 +24,7 @@ class CreditConfigsTableSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => '邀请',
-                'points' => 30,
+                'points' => 50,
                 'max' => 1,
 
             ],

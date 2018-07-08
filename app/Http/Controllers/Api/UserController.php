@@ -164,6 +164,7 @@ class UserController extends Controller
         $resume = Resume::firstOrCreate(['user_id' => $user->id ]);
         $resume->experiences;
         if ($resume->experiences) {
+            $resume->experience_year = ceil((time() - $resume->experiences[0]->started_at)/(60*60*24*365));
             foreach ($resume->experiences as &$experience) {
                 $experience->started_date = date('Y-m', $experience->started_at);
                 $experience->ended_date = $experience->ended_at > 0 ? date('Y-m', $experience->ended_at) : '今';
@@ -173,6 +174,8 @@ class UserController extends Controller
 
         $resume->user;
         $resume->user->genders = $resume->user->genders();
+        $resume->status_name = Resume::$STATUS[$resume->status];
+
         return $this->sendResponse($resume, '添加成功');
     }
 

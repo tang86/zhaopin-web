@@ -20,10 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
 
 
+    Route::get('get-company-categories', 'ResumeController@getCompanyCategories');
     Route::get('districts', 'DistrictController@index');
+    Route::get('get-conditions', 'PositionController@getConditions');
     Route::get('company/{company}', 'CompanyController@show');
 
-    Route::post('login', 'LoginController@login');
+    Route::post('login', 'LoginController@login')->name('login');
 
     Route::get('code', 'CodeController@create');
     Route::get('get_banner_news', 'NewsController@getBannerNews');

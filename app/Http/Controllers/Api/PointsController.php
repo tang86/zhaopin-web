@@ -38,11 +38,13 @@ class PointsController extends Controller
             $invite_user_points_log['user'] = User::where(['id' => $id])->first();
             if (in_array($invite_user_points_log->code, $resume_user_codes)) {
                 $invite_user_points_log['complete_resume'] = true;
+                $invite_user_points_log['resume_status_name'] = '已完善简历';
                 $complete_resume_number++;
-                $points += $credit_config_resume->points;
+                //$points += $credit_config_resume->points;
 
             } else {
                 $invite_user_points_log['complete_resume'] = false;
+                $invite_user_points_log['resume_status_name'] = '未完善简历';
             }
         }
 

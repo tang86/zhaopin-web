@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Company;
+use App\Models\CompanyCategory;
 use App\Models\Position;
+use App\Models\Salary;
 use App\Models\UserHasPosition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +15,34 @@ class PositionController extends Controller
     public function index(Request $request)
     {
         $page_size = $request->page_size??10;
-        $data = Position::where('status', 1)
+        $where = [
+            'status' => 1
+        ];
+        $query = Position::where($where);
+
+        if (isset($request->selectedConditions)) {
+            if (!empty($request->selectedConditions)) {
+                $selected_conditions = json_decode($request->selectedConditions, true);
+                foreach ($selected_conditions as $key => $condition) {
+                    if ($key == 'company_category_id') {
+                        if (!empty($condition)) {
+                            $company_ids = Company::whereIn('company_category_id', $condition)->get()->pluck('id');
+                            $query->whereIn('company_id', $company_ids);
+                        }
+
+
+                    } else {
+                        if (!empty($condition)) {
+                            $query->whereIn($key,$condition);
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+        $data = $query
             ->with('company')
             ->with('district')
             ->with('salary')
@@ -85,6 +115,17 @@ class PositionController extends Controller
             return $this->sendResponse(false, '未投递');
         }
 
+    }
+
+    public function getConditions()
+    {
+        $company_categories = CompanyCategory::all();
+        $salaries = Salary::all();
+        $data = [
+            'company_categories' => $company_categories,
+            'salaries' => $salaries
+        ];
+        return $this->sendResponse($data, '获取查询条件');
     }
 
 
