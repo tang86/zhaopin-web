@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CreditConfigsTableSeeder::class);
         $this->call(UserPointsLogsTableSeeder::class);
         $this->call(NewsTableSeeder::class);
+        $this->call(NoticesTableSeeder::class);
         $this->call(CompaniesTableSeeder::class);
         $this->call(IntentionsTableSeeder::class);
         $this->call(SalariesTableSeeder::class);

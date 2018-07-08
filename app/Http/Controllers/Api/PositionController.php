@@ -9,6 +9,7 @@ use App\Models\Salary;
 use App\Models\UserHasPosition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\URL;
 
 class PositionController extends Controller
 {
@@ -64,12 +65,7 @@ class PositionController extends Controller
         $page_size = $request->page_size??10;
         $user_id = $request->get('user_id');
         $data = UserHasPosition::where(['user_id' => $user_id])->paginate($page_size);
-//        $data = Position::where('status', 1)
-//            ->with('company')
-//            ->with('district')
-//            ->with('salary')
-//            ->orderBy('sort', 'desc')
-//            ->paginate($page_size);
+
 
         if(!empty($data)){
             foreach ($data as &$item) {
@@ -95,6 +91,8 @@ class PositionController extends Controller
         $position->company->company_size;
         $position->company->company_status;
         $position->company->district;
+
+        $position->company['logo_url'] = URL::asset("uploads/{$position->company->logo}");
 
         $position['keywords_arr'] = explode(' ', $position->keywords);
 

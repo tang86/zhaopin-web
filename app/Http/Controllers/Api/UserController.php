@@ -179,6 +179,17 @@ class UserController extends Controller
         return $this->sendResponse($resume, '添加成功');
     }
 
+    public function hasResume()
+    {
+        $user = Auth::guard('api')->user();
+        $resume = Resume::where(['user_id' => $user->id ])->first();
+        if ($resume) {
+            return $this->sendResponse($resume, '有简历');
+        } else {
+            return $this->sendResponse(['status'=>0], '无简历');
+        }
+    }
+
     public function bindMobile(UserRequest $request)
     {
         $user = Auth::guard('api')->user();

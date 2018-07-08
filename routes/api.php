@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('users/withdraw', 'UserController@withdraw');
 
         Route::get('users/get-resume', 'UserController@getResume');
+        Route::get('users/has-resume', 'UserController@hasResume');
         Route::get('users/points', 'UserController@points');
         Route::post('users/resume/create-or-update', 'UserController@updateResume');
         Route::post('users/send-resume', 'UserController@sendResume');

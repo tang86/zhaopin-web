@@ -159,9 +159,11 @@ class PointsController extends Controller
         if (UserPointsLog::canIAdd($user->id, $credit_config, $request->get('code'))) {
             UserPointsLog::add($user->id, $credit_config, $request->get('code'));
             $message = '添加';
+            $status = 1;
         } else {
             $message = '没有添加';
+            $status = 0;
         }
-        return $this->sendResponse($message, '修改成功');
+        return $this->sendResponse(['status'=>$status], $message);
     }
 }

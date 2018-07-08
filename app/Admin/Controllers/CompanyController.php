@@ -115,7 +115,7 @@ class CompanyController extends Controller
             $form->select('district_id', '地区')->options(District::selectOptions());
             $form->image('logo', '企业logo')->removable()->move('company');
             $form->text('number', '企业人数');
-            $form->editor('profile','公司简介')->rules('required');
+            $form->textarea('profile','公司简介')->rules('required');
             $form->text('phone', '商务电话');
             $form->text('wechat', '微信');
             $form->text('qq', 'QQ');
