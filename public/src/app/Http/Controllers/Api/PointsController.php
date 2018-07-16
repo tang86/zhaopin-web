@@ -112,9 +112,10 @@ class PointsController extends Controller
     {
         $user = Auth::guard('api')->user();
         $credit_config = CreditConfig::find(2);
-        $user->points += $credit_config->points;
-        $user->save();
+
         if (UserPointsLog::canIAdd($user->id, $credit_config, $request->get('code'))) {
+            $user->points += $credit_config->points;
+            $user->save();
             UserPointsLog::add($user->id, $credit_config, $request->get('code'));
             $message = '添加';
         } else {
