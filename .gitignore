@@ -14,3 +14,4 @@ yarn-error.log
 .env
 /config/admin.php
 composer.lock
+uploads
