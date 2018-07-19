@@ -36,8 +36,8 @@ return [
     ],
 
     'media' => [
-        'app_id' => 'wx2e68cc2040709c54',
-        'secret' => 'f8df6da844dfc30f778157471445c6a2'
+        'app_id' => 'wxb8fde124ccc8a96a',
+        'secret' => '95c3c66cb6f78a510020408fc92c1e88'
     ],
 
 ];
