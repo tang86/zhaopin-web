@@ -77,7 +77,7 @@ class NewsController extends Controller
             $grid->id('ID')->sortable();
             $grid->title('标题');
             $grid->banner('缩略图')->display(function ($banner) {
-                return "<img src=".env('APP_URL').'/uploads/'.$banner." width=100 >";
+                return "<img src=".config('APP_URL').'/uploads/'.$banner." width=100 >";
             });
             $grid->keyword('关键字');
             $grid->banner_status('是否上轮播')->display(function ($status) {
