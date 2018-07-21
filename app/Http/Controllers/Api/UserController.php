@@ -163,7 +163,8 @@ class UserController extends Controller
         $user = Auth::guard('api')->user();
         $resume = Resume::firstOrCreate(['user_id' => $user->id ]);
         $resume->experiences;
-        if ($resume->experiences) {
+
+        if (count($resume->experiences) > 0) {
             $resume->experience_year = ceil((time() - $resume->experiences[0]->started_at)/(60*60*24*365));
             foreach ($resume->experiences as &$experience) {
                 $experience->started_date = date('Y-m', $experience->started_at);
