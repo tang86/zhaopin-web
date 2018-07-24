@@ -19,7 +19,7 @@ class CreditConfigsTableSeeder extends Seeder
                 'id' => 1,
                 'name' => '阅读',
                 'points' => 1,
-                'max' => 3,
+                'max' => 1,
             ],
             [
                 'id' => 2,
@@ -38,7 +38,7 @@ class CreditConfigsTableSeeder extends Seeder
                 'id' => 4,
                 'name' => '被邀请人完善简历',
                 'points' => 20,
-                'max' => 0,
+                'max' => 1,
             ],
             [
                 'id' => 5,
