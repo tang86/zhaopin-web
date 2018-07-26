@@ -24,7 +24,7 @@ class AliyunService
      * @return bool|\stdClass
      */
 
-    public static function  sendSms($sms_code,$mobile,$sign_name='华辰电缆有限公司',$template_code='SMS_119091649') {
+    public static function  sendSms($sms_code, $mobile, $sign_name='区域聘', $template_code='SMS_139981415') {
         ini_set("display_errors", "on"); // 显示错误提示，仅用于测试时排查问题
         set_time_limit(0); // 防止脚本超时，仅用于测试使用，生产环境请按实际情况设置
         header("Content-Type: text/plain; charset=utf-8"); // 输出为utf-8的文本格式，仅用于测试
@@ -34,8 +34,8 @@ class AliyunService
 
         // fixme 必填: 请参阅 https://ak-console.aliyun.com/ 取得您的AK信息
 
-        $accessKeyId = config('accessKeyId');
-        $accessKeySecret = config('accessKeySecret');
+        $accessKeyId = config('sms.accessKeyId');
+        $accessKeySecret = config('sms.accessKeySecret');
 
         // fixme 必填: 短信接收号码
         $params["PhoneNumbers"] = $mobile;
