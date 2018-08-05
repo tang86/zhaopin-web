@@ -117,8 +117,8 @@ class PositionController extends Controller
 
     public function getConditions()
     {
-        $company_categories = CompanyCategory::orderByDesc('sort');
-        $salaries = Salary::orderByDesc('sort');
+        $company_categories = CompanyCategory::orderByDesc('sort')->get();
+        $salaries = Salary::orderByDesc('sort')->get();
         $data = [
             'company_categories' => $company_categories,
             'salaries' => $salaries
