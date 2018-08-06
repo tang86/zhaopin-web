@@ -123,10 +123,10 @@ class UserController extends Controller
             $resume->intentions_name = $request->post('intentions_name');
         }
 
-
         $resume->save();
 
-        return $this->sendResponse([], '更新成功');
+        $resume->is_complete = $resume->isComplete();
+        return $this->sendResponse($resume, '更新成功');
     }
 
     public function mySentPositions(UserRequest $request)
@@ -176,6 +176,7 @@ class UserController extends Controller
         $resume->user;
         $resume->user->genders = $resume->user->genders();
         $resume->status_name = Resume::$STATUS[$resume->status];
+        $resume->is_complete = $resume->isComplete();
 
         return $this->sendResponse($resume, '添加成功');
     }
@@ -185,6 +186,7 @@ class UserController extends Controller
         $user = Auth::guard('api')->user();
         $resume = Resume::where(['user_id' => $user->id ])->first();
         if ($resume) {
+            $resume->is_complete = $resume->isComplete();
             return $this->sendResponse($resume, '有简历');
         } else {
             return $this->sendResponse(['status'=>0], '无简历');

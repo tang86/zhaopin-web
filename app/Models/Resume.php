@@ -59,6 +59,19 @@ class Resume extends Eloquent
 	    1 => '在职',
     ];
 
+	public function isComplete()
+    {
+
+        $user = User::where('id', $this->user_id)->first();
+
+        if (!$this->name) return false;
+        if (!$this->age) return false;
+        if (!$this->gender) return false;
+        if (!$user->mobile) return false;
+
+        return true;
+    }
+
 	public function user()
 	{
 		return $this->belongsTo(\App\Models\User::class);
