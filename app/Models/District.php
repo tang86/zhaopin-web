@@ -54,6 +54,11 @@ class District extends Eloquent
         $this->setTitleColumn('name');
     }
 
+    public function fullName()
+    {
+
+    }
+
     public function district()
 	{
 		return $this->belongsTo(District::class, 'parent_id');

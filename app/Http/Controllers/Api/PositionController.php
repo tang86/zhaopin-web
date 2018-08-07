@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Company;
 use App\Models\CompanyCategory;
+use App\Models\District;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\UserHasPosition;
@@ -30,8 +31,7 @@ class PositionController extends Controller
                             $company_ids = Company::whereIn('company_category_id', $condition)->get()->pluck('id');
                             $query->whereIn('company_id', $company_ids);
                         }
-
-
+                        
                     } else {
                         if (!empty($condition)) {
                             $query->whereIn($key,$condition);
@@ -95,6 +95,27 @@ class PositionController extends Controller
         $position->company['logo_url'] = URL::asset("uploads/{$position->company->logo}");
 
         $position['keywords_arr'] = explode(' ', $position->keywords);
+
+        $full_name = '';
+
+        if ($position->district->parent_id > 0) {
+            $parent = District::where('id', $position->district->parent_id)->first();
+            if ($parent) {
+                $parent_name = $parent->name;
+                $full_name = "{$parent_name}·{$position->district->name}";
+                if ($parent->parent_id > 0) {
+                    $granpa = $parent->distinct();
+                    if ($granpa) {
+                        $granpa_name = $granpa->name;
+                        $full_name = "{$granpa_name}·{$full_name}";
+                    }
+                }
+            }
+        }
+
+
+
+        $position->district->full_name = $full_name;
 
         return $this->sendResponse($position, '获取详情成功');
     }

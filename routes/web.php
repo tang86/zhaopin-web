@@ -11,14 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::group(['middleware' => ['admin']], function() {
-
-
-});
 
 Route::group(['middleware' => ['web']], function () {
     Route::any('/wechat','WechatController@index');
@@ -27,17 +19,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/wechat_sources','WechatController@sources');
     Route::get('/wechat_makeImg/{head}/{name}/{url}','WechatController@makeImg');
     Route::any('/qrcode','WechatController@qrcode');
-    Route::get('/evaluation','Home\EvaluationController@index');
-    Route::any('/evaluate','Home\EvaluationController@evaluate');
-    Route::any('/reports','Home\EvaluationController@reports');
-    Route::any('/grade-detail/{member_id}/{order_number}','Home\EvaluationController@gradeDetail');
-    Route::any('/report/{member_id}','Home\EvaluationController@report');
-    Route::any('/api/report/{member_id}','Home\EvaluationController@report');
 
-    Route::any('wechat_notify', 'Api\PayController@createOrderNotify');
+
 });
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'Home\HomeController@index');
+
