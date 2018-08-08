@@ -10,7 +10,7 @@ $factory->define(\App\Models\UserPointsLog::class, function (Faker $faker) {
         $status = random_int(0, 2);
         $credit_config = [
             'id' => 0,
-            'points' => 50,
+            'points' => -1000,
             'name' => '提现',
         ];
     } else {

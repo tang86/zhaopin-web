@@ -32,6 +32,8 @@ Route::group([
     $router->resource('districts', 'DistrictController'); //地区管理
     $router->resource('intentions', 'IntentionController'); //求职意向管理
     $router->resource('credits', 'CreditController'); //积分管理
+    $router->resource('user-points-log', 'UserPointsLogController'); //积分记录管理
+    $router->resource('credit-configs', 'CreditConfigController'); //积分规则管理
 
 
 
