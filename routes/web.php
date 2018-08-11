@@ -28,4 +28,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'Home\HomeController@index');
+Route::get('/about-us', 'Home\AboutUsController@index');
+Route::get('/news', 'Home\NewsController@index');
+Route::get('/positions', 'Home\PositionController@index');
+Route::get('/news-show', 'Home\NewsController@show');
 

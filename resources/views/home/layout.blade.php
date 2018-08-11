@@ -18,10 +18,11 @@
         <div class="nav_login">
             <div class="navigation">
                 <ul>
-                    <li><a href="">首页</a></li>
-                    <li class="current"><a href="">职位</a></li>
-                    <li><a href="">就业资讯</a></li>
-                    <li><a href="">联系我们</a></li>
+                    <li class="{{ $active == 'home' ? 'current' : '' }}" ><a href="{{ url('/') }}">首页</a></li>
+                    <li class="{{ $active == 'position' ? 'current' : '' }}" ><a href="{{ url('/positions') }}">职位</a></li>
+                    <li class="{{ $active == 'news' ? 'current' : '' }}" ><a href="{{ url('/news') }}">就业资讯</a></li>
+                    <li class="{{ $active == 'about-us' ? 'current' : '' }}" ><a href="{{ url('/about-us') }}">联系我们</a></li>
+
                 </ul>
             </div>
             <div class="login">

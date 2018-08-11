@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [];
+        $data['title'] = '首页';
+        $data['active'] = 'home';
+        return view('home', $data);
     }
 }
