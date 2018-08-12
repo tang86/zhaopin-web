@@ -22,6 +22,7 @@
     float: left;
 }
 .log-img img{
+
     width: 50px;
     height: 50px;
     margin-top: 5px;
@@ -54,7 +55,9 @@
     padding-right: 27px;
     text-align: center;
 }
-
+/*.navigation ul li:hover {*/
+    /*background-color: #43aca3;*/
+/*}*/
 .navigation ul li.current {
     background-color: #43aca3;
 }
@@ -74,9 +77,8 @@
 }
 .login-img {
     float: left;
-    margin-top: 22px;
     width: 20px;
-    height: 20px;
+    height: 60px;
     line-height: 60px;
 
 }

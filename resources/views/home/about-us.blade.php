@@ -1,55 +1,55 @@
 @extends('home.layout')
-<link rel="stylesheet" href="{{ asset('css/about-us.css') }}">
+
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/about-us.css') }}">
+    <div class="block00">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-3 column">
+                    <div class="block00-img">
+                        <img src="{{ asset('img/about-us/about-us_01.png') }}" alt="">
+                    </div>
+                    <div class="block00-text">
+                        <p>关注我们的订阅号</p>
+                        <p>企业动态随时掌握</p>
+                    </div>
+                    <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
+                </div>
 
-<div class="block00">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-3 column">
-                <div class="block00-img">
-                    <img src="{{ asset('img/about-us/about-us_01.png') }}" alt="">
+                <div class="col-md-3 column">
+                    <div class="block00-img">
+                        <img src="{{ asset('img/about-us/about-us_02.png') }}" alt="">
+                    </div>
+                    <div class="block00-text">
+                        <p>关注我们的小程序</p>
+                        <p>不错过任何招聘信息</p>
+                    </div>
+                    <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
                 </div>
-                <div class="block00-text">
-                    <p>关注我们的订阅号</p>
-                    <p>企业动态随时掌握</p>
-                </div>
-                <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
-            </div>
 
-            <div class="col-md-3 column">
-                <div class="block00-img">
-                    <img src="{{ asset('img/about-us/about-us_02.png') }}" alt="">
+                <div class="col-md-3 column">
+                    <div class="block00-img">
+                        <img src="{{ asset('img/about-us/about-us_03.png') }}" alt="">
+                    </div>
+                    <div class="block00-text">
+                        <p>关注我们的客服</p>
+                        <p>企业入驻、在线咨询</p>
+                    </div>
+                    <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
                 </div>
-                <div class="block00-text">
-                    <p>关注我们的小程序</p>
-                    <p>不错过任何招聘信息</p>
-                </div>
-                <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
-            </div>
 
-            <div class="col-md-3 column">
-                <div class="block00-img">
-                    <img src="{{ asset('img/about-us/about-us_03.png') }}" alt="">
-                </div>
-                <div class="block00-text">
-                    <p>关注我们的客服</p>
-                    <p>企业入驻、在线咨询</p>
-                </div>
-                <div class="line"><img src="{{ asset('img/about-us/about-us_04.png') }}" alt=""></div>
-            </div>
-
-            <div class="col-md-3 column">
-                <div class="block00-img">
-                    <img src="{{ asset('img/ic_phone.png') }}" alt="">
-                </div>
-                <div class="block00-text">
-                    <p>全国免费热线</p>
-                    <p>400-888-888</p>
+                <div class="col-md-3 column">
+                    <div class="block00-img">
+                        <img src="{{ asset('img/ic_phone.png') }}" alt="">
+                    </div>
+                    <div class="block00-text">
+                        <p>全国免费热线</p>
+                        <p>400-888-888</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <div class="block01">
         <div class="block-content">

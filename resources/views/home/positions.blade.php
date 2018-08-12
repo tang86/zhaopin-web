@@ -1,7 +1,7 @@
 @extends('home.layout')
-<link rel="stylesheet" href="{{ asset('css/positions.css') }}">
-@section('content')
 
+@section('content')
+    <link rel="stylesheet" href="{{ asset('css/positions.css') }}">
     <div class="block00">
         <div class="container">
             <div class="row clearfix">

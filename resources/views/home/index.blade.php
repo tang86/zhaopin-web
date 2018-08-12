@@ -1,7 +1,7 @@
 @extends('home.layout')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-@section('content')
 
+@section('content')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <div id="myCarousel" class="carousel slide row">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
