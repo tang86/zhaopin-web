@@ -19,7 +19,7 @@
             <div class="navigation">
                 <ul>
                     <li class="{{ $active == 'home' ? 'current' : '' }}" ><a href="{{ url('/') }}">首页</a></li>
-                    <li class="{{ $active == 'position' ? 'current' : '' }}" ><a href="{{ url('/positions') }}">职位</a></li>
+                    <li class="{{ $active == 'positions' ? 'current' : '' }}" ><a href="{{ url('/positions') }}">职位</a></li>
                     <li class="{{ $active == 'news' ? 'current' : '' }}" ><a href="{{ url('/news') }}">就业资讯</a></li>
                     <li class="{{ $active == 'about-us' ? 'current' : '' }}" ><a href="{{ url('/about-us') }}">联系我们</a></li>
 

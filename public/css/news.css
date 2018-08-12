@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+    color: #333333 !important;
+}
 .block00 {
     padding-top: 75px;
     padding-bottom: 42px;
@@ -14,6 +18,11 @@
     height: 240px;
     float: left;
 }
+.block00-img img{
+    display: block;
+    width: 302px;
+    height: 238px;
+}
 
 .block00-text {
     width: 250px;
@@ -23,9 +32,11 @@
     padding-left: 24px;
 }
 .block00-text h1 {
+    white-space:nowrap;
+    overflow: hidden;
     margin: 0 0 15px 0;
     padding: 0;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 24px;
     color: #333333;
 }
@@ -42,7 +53,8 @@
 }
 .hits {
     float: left;
-}.hits-number {
+}
+.hits-number {
     color: #f58506;
     font-size: 14px;
     line-height: 22px;

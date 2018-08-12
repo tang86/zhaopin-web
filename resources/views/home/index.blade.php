@@ -1,25 +1,24 @@
 @extends('home.layout')
-
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
     <div id="myCarousel" class="carousel slide row">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+
+            @foreach($banners as $key => $banner)
+                <li data-target="#myCarousel" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
+
+            @endforeach
         </ol>
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
-            <div class="item active">
-                <img class="carousel-inner img-responsive" src="{{ asset('img/home/ic_banner.png') }}" alt="First slide">
-            </div>
-            <div class="item">
-                <img class="carousel-inner img-responsive" src="{{ asset('img/home/ic_banner.png') }}" alt="Second slide">
-            </div>
-            <div class="item">
-                <img class="carousel-inner img-responsive" src="{{ asset('img/home/ic_banner.png') }}" alt="Third slide">
-            </div>
+            @foreach($banners as $key => $banner)
+                <div class="item {{ $key == 0 ? 'active' : '' }}">
+                    <img class="carousel-inner img-responsive" src="{{ asset($banner->banner) }}" alt="First slide">
+                </div>
+            @endforeach
+
         </div>
 
     </div>
@@ -74,7 +73,7 @@
                     </div>
                     <div class="col-md-6 column">
                         <div class="left-img">
-                            <img src="{{ asset('img/home/home_03.png') }}" alt="">
+                            <img src="{{ asset('img/home/home_03.png') }}" alt="" class="img-responsive center-block">
                         </div>
                     </div>
 

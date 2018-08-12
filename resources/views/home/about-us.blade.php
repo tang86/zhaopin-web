@@ -1,7 +1,7 @@
 @extends('home.layout')
-
+<link rel="stylesheet" href="{{ asset('css/about-us.css') }}">
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/about-us.css') }}">
+
 <div class="block00">
     <div class="container">
         <div class="row clearfix">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-md-6 column">
                         <div class="left-img">
-                            <img src="{{ asset('img/home/home_03.png') }}" alt="">
+                            <img src="{{ asset('img/home/home_03.png') }}" alt="" class="img-responsive center-block">
                         </div>
                     </div>
 
