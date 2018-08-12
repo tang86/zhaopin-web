@@ -1,3 +1,8 @@
+.carousel-inner{
+
+    max-height: 600px;
+
+}
 .carousel-indicators .active{
     background-color: #43aca3;
     width: 59px;
