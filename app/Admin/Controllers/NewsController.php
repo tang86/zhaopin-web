@@ -76,6 +76,7 @@ class NewsController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->title('标题');
+            $grid->brief('简述');
             $grid->banner('缩略图')->display(function ($banner) {
                 return "<img src=".config('APP_URL').'/uploads/'.$banner." width=100 >";
             });
@@ -102,6 +103,7 @@ class NewsController extends Controller
 
             $form->display('id', 'ID');
             $form->text('title','标题')->rules('required|max:20');
+            $form->textarea('brief','简述')->rules('required|max:40');
             $form->text('keyword','关键字')->rules('required|max:48');
             $form->image('banner','缩略图')->uniqueName()->move('news');
 
