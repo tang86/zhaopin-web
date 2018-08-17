@@ -84,6 +84,7 @@ class CompanyController extends Controller
             $grid->status('状态')->display(function ($status_id) {
                 return self::$STATUS[$status_id];
             });
+            $grid->sort('排序')->sortable();
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
 
@@ -92,7 +93,7 @@ class CompanyController extends Controller
 
             $grid->tools(function (Grid\Tools $tools) {
                 $tools->batch(function (Grid\Tools\BatchActions $actions) {
-                    $actions->disableDelete();
+                    //$actions->disableDelete();
                 });
             });
         });
