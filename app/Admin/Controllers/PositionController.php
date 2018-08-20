@@ -112,6 +112,7 @@ class PositionController extends Controller
             $form->select('company_id', '企业名称')->options(Company::options());
             $form->select('district_id', '位置')->options(District::selectOptions());
             $form->text('keywords', '关键词');
+            $form->select('room_and_board', '吃住')->options(Position::$ROOM_AND_BOARD);
             $form->text('number', '预招人数');
             $form->textarea('content', '职位详情');
             $form->textarea('benefit', '福利待遇');

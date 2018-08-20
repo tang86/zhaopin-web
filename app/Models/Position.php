@@ -64,6 +64,13 @@ class Position extends Eloquent
 		'salary_id'
 	];
 
+	public static $ROOM_AND_BOARD =[
+	    0 => '不包',
+	    1 => '管吃',
+	    2 => '管住',
+	    3 => '管吃管住',
+    ];
+
 	public function company()
 	{
 		return $this->belongsTo(Company::class);
