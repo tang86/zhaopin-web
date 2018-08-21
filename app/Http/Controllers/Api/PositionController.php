@@ -122,13 +122,15 @@ class PositionController extends Controller
 
     public function isSent(Request $request)
     {
-
         $where = [
             'user_id' => $request->get('user_id'),
             'position_id' => $request->get('position_id'),
         ];
+
         $user_has_position = UserHasPosition::where($where)->first();
-        if ($user_has_position) {
+
+        if ($user_has_position && $user_has_position->expired > time()) {
+
             return $this->sendResponse(true, '已投递');
         } else {
             return $this->sendResponse(false, '未投递');

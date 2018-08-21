@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 01 Jul 2018 21:57:03 +0800.
+ * Date: Tue, 21 Aug 2018 15:44:20 +0800.
  */
 
 namespace App\Models;
@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $user_id
  * @property int $position_id
  * @property int $resume_id
+ * @property int $expired
  * 
  * @property \App\Models\Resume $resume
  * @property \App\Models\User $user
@@ -30,13 +31,15 @@ class UserHasPosition extends Eloquent
 	protected $casts = [
 		'user_id' => 'int',
 		'position_id' => 'int',
-		'resume_id' => 'int'
+		'resume_id' => 'int',
+		'expired' => 'int'
 	];
 
 	protected $fillable = [
 		'user_id',
 		'position_id',
-		'resume_id'
+		'resume_id',
+		'expired'
 	];
 
 	public function resume()

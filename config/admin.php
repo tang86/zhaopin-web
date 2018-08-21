@@ -2,6 +2,9 @@
 
 return [
     'new_user_num' => 50,
+
+    //简历二次投递间隔日数
+    'sent_resume_expired' => 15,
     /*
      * Laravel-admin name.
      */

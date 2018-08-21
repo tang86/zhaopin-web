@@ -87,14 +87,18 @@ class UserController extends Controller
         $position_id = $request->post('position_id');
 
         $user = User::find($user->id);
+        $data = [
+            'position_id' => $position_id,
+            'user_id' => $user->id,
+            'resume_id' => $user->resume->id,
+        ];
 
-        $user_has_position = new UserHasPosition();
-        $user_has_position->position_id = $position_id;
-        $user_has_position->user_id = $user->id;
-        $user_has_position->resume_id = $user->resume->id;
+        $user_has_position = UserHasPosition::firstOrNew($data);
+
+        $user_has_position->expired = time() + 60*60*24*config('admin.sent_resume_expired');
         $user_has_position->save();
 
-        return $this->sendResponse([], '投递成功');
+        return $this->sendResponse($user_has_position, '投递成功');
     }
 
     public function updateResume(UserRequest $request)
